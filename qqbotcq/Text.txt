@@ -17,7 +17,7 @@
     "st_skill": "{fullname}的{skill}技能成功设置成{value}",
     "st_multiple": "{fullname}的技能设置成功",
     "st_skilltoolarge": "输入的技能不能超过{maxskill}！",
-    "st_showskill": "{fullname}的{skill}技能是：",
+    "st_showskill": "{fullname}的{skill}技能是：{value}",
     "st_skillnotfound": "{fullname}未设置{skill}技能",
     "st_showallskill": "{fullname}的技能有：\n{skill}",
     "st_noskill": "{fullname}还未设置过技能！",
