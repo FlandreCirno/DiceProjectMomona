@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import random, os, ast
 max_skill = 1000
-skillroll_type = 1
+skillroll_type = 0
 def onQQMessage(bot, contact, member, content):
     if hasattr(bot, 'Momona_switch'):
         switch = bot.Momona_switch(bot, contact, member, content)
@@ -26,7 +26,7 @@ def onQQMessage(bot, contact, member, content):
             if cmd != 'rs':
                 loc = bot.findnum(con)
                 if loc[0] == 0:
-                    round = int(con[loc[0]:loc[1]])
+                    round = max(int(con[loc[0]:loc[1]]), 1)
                     con = con[loc[1]:]
             con = con.strip()
             if len(con) > 0:
@@ -85,7 +85,7 @@ def onQQMessage(bot, contact, member, content):
             elif error == 1:
                 output = bot.Momona_text['rs_skillnotfound'].replace('{skill}', con)
             elif error == 3:
-                output = bot.Momona_text['st_skilltoolarge'].replace('{maxskill}', max_skill)
+                output = bot.Momona_text['st_skilltoolarge'].replace('{maxskill}', str(max_skill))
             elif error == 5:
                 output = bot.Momona_text['rs_toomany']
             else:
@@ -135,7 +135,7 @@ def onQQMessage(bot, contact, member, content):
                         savesta(bot, uin, exp[2*i], exp[2*i+1])
                     output = bot.Momona_text['st_multiple']
             elif error == 3:
-                output = bot.Momona_text['st_skilltoolarge'].replace('{maxskill}', max_skill)
+                output = bot.Momona_text['st_skilltoolarge'].replace('{maxskill}', str(max_skill))
             elif error == 5:
                 sklname, skl = loadsta(bot, uin, exp[0])
                 if sklname and skl:
@@ -189,9 +189,10 @@ def onQQMessage(bot, contact, member, content):
                         else:
                             error = 6
                     if error == 0:
+                        outexp = ''
                         if len(con) > 1:
                             outstr, outexp = bot.formatexp(con[1])
-                        else:
+                        if len(outexp) == 0:
                             outexp = 'd10'
                         results = bot.dice(bot, contact, member, outexp)
                         if results.error:
@@ -299,9 +300,9 @@ def onPlug(bot):
         bot.WARN('属性表已重置')
         bot.stlist = {}
     if 'skillrolltype' in bot.config.keys():
-        skillroll_type = bot.config['skillrolltype']
+        global skillroll_type = bot.config['skillrolltype']
     if 'maxskill' in bot.config.keys():
-        max_skill = bot.config['maxskill']
+        global max_skill = bot.config['maxskill']
 def onUnplug(bot):
     saveData(bot)
     del bot.helpinfo['rs']

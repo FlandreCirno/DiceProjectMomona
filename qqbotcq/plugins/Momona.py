@@ -230,7 +230,7 @@ def Momona_msgFormater(bot, contact, member, content):
 def AddBlackList(bot, uin):
     uin = str(uin)
     if uin in bot.Momona_var['blacklist'].keys():
-        bot.Momona_var['blacklist'] = bot.Momona_var['blacklist'][uin] + 1
+        bot.Momona_var['blacklist'][uin] = bot.Momona_var['blacklist'][uin] + 1
     else:
         bot.Momona_var['blacklist'][uin] = 1
     return bot.Momona_var['blacklist'][uin]

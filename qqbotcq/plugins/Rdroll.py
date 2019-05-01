@@ -212,7 +212,7 @@ def formatexp(exp):
             newexp = newexp + tempexp
         exp = newexp
     for i in range(len(exp)//2 + 1):
-        if i != 0:
+        if i != 0 and len(exp[2*i]) != 0:
             outexp = outexp + exp[2*i - 1]
         if len(exp[2*i]) == 0:
             pass
@@ -306,9 +306,9 @@ def onPlug(bot):
     bot.formatexp = formatexp
     bot.findnum = findnum
     if 'maxround' in bot.config.keys():
-        max_round = bot.config['maxround']
+        global max_round = bot.config['maxround']
     if 'maxside' in bot.config.keys():
-        max_side = bot.config['maxside']
+        global max_side = bot.config['maxside']
 def onUnplug(bot):
     saveData(bot)
     del bot.dice

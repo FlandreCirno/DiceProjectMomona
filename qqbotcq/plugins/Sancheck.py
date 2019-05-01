@@ -181,9 +181,9 @@ def onPlug(bot):
     bot.helpinfo['san'] = [['意志','当前理智','理智上限'],bot.Momona_text['helpinfo_san']]
     bot.helpinfo['sc'] = [['成功/失败理智扣除'],bot.Momona_text['helpinfo_sc']]
     if 'sanchecktype' in bot.config.keys():
-        sancheck_type = bot.config['sanchecktype']
+        global sancheck_type = bot.config['sanchecktype']
     if 'maxskill' in bot.config.keys():
-        max_san = bot.config['maxskill']
+        global max_san = bot.config['maxskill']
 def onUnplug(bot):
     del bot.sanlist
     del bot.helpinfo['sc']

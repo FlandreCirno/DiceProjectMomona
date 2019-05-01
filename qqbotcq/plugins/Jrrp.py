@@ -24,7 +24,7 @@ def onQQMessage(bot, contact, member, content):
             output = bot.Momona_text['jrrp'].replace('{result}',str(rp))
         elif (content[0] == '.' or content[0] == '。') and content[1:5].lower() == 'xrxc':
             nm = bot.Momona_name(bot, contact, member, content)
-            output = bot.Momona_text['jrrp'].replace('{result}',str([random.randint(0,9) for x in range(4)]))
+            output = bot.Momona_text['xrxc'].replace('{result}',str([random.randint(0,9) for x in range(4)]))
         if len(output) > 0:
             bot.SendTo(contact, bot.Momona_msgFormater(bot, contact, member, output))
 def getrp(bot, uin):
